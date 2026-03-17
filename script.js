@@ -24,6 +24,25 @@ function renderTasks() {
   });
 }
 
+function getFirstStep(task) {
+  const duration = Number(task.duration);
+  const friction = Number(task.friction);
+
+  if (duration <= 10) {
+    return `This is short. Finish it now.`;
+  }
+
+  if (friction === 3) {
+    return `Make it easier: open "${task.title}" and work on it for just 5 minutes.`;
+  }
+
+  if (duration <= 30) {
+    return `Start with the first small part of "${task.title}" and keep going for 10 minutes.`;
+  }
+
+  return `Open "${task.title}" and do only the first clear step.`;
+}
+
 function suggestTask() {
  if (tasks.length === 0) return;
 
@@ -64,6 +83,10 @@ function suggestTask() {
     }
   });
 
-  document.getElementById("suggestion").innerText =
-    "Do this now: " + bestTask.title;
+  const firstStep = getFirstStep(bestTask);
+
+  document.getElementById("suggestion").innerHTML = `
+    <p><strong>Do this now:</strong> ${bestTask.title}</p>
+    <p><strong>First step:</strong> ${firstStep}</p>
+  `;
 }
