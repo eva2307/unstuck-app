@@ -1,6 +1,6 @@
 # Unstuck
 
-App that helps overwhelmed people decide what to do next.
+An app that helps overwhelmed people decide what to do next.
 
 ## Idea
 When a user has too many tasks, deadlines, and calendar blocks, the app suggests the best next step.
@@ -9,7 +9,7 @@ When a user has too many tasks, deadlines, and calendar blocks, the app suggests
 Not just task management.
 The goal is to reduce procrastination by choosing the lowest-friction useful action.
 
-## Future features
+## Possible features
 - task input
 - deadlines
 - estimated duration
