@@ -90,5 +90,6 @@ function suggestTask() {
     <p><strong>Do this now:</strong> ${bestTask.title}</p>
     <p><strong>First step:</strong> ${firstStep}</p>
   `;
-  renderTasks();
+ 
 }
+ renderTasks();
