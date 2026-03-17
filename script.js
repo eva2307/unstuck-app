@@ -1,4 +1,4 @@
-let tasks = [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function addTask() {
   const title = document.getElementById("taskTitle").value;
@@ -9,6 +9,7 @@ function addTask() {
 
   const task = { title, deadline, duration, priority, friction };
   tasks.push(task);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 
   renderTasks();
 }
@@ -89,4 +90,5 @@ function suggestTask() {
     <p><strong>Do this now:</strong> ${bestTask.title}</p>
     <p><strong>First step:</strong> ${firstStep}</p>
   `;
+  renderTasks();
 }
