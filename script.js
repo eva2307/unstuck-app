@@ -25,17 +25,45 @@ function renderTasks() {
 }
 
 function suggestTask() {
-  if (tasks.length === 0) return;
+ if (tasks.length === 0) return;
 
-  // jednoduchá logika (zatím)
-  let best = tasks[0];
+  let bestTask = null;
+  let bestScore = -Infinity;
+
+  const now = new Date();
 
   tasks.forEach(t => {
-    if (t.priority > best.priority) {
-      best = t;
+    let score = 0;
+
+    // PRIORITY (vyšší = lepší)
+    score += Number(t.priority) * 3;
+
+    // FRICTION (nižší = lepší)
+    score += (4 - Number(t.friction)) * 2;
+
+    // DURATION (kratší = lepší)
+    const duration = Number(t.duration);
+    if (duration > 0) {
+      score += Math.max(0, 60 - duration) / 10;
+    }
+
+    // DEADLINE (bližší = lepší)
+    if (t.deadline) {
+      const deadline = new Date(t.deadline);
+      const diffHours = (deadline - now) / (1000 * 60 * 60);
+
+      if (diffHours > 0) {
+        score += Math.max(0, 24 - diffHours);
+      }
+    }
+
+    // výběr nejlepšího
+    if (score > bestScore) {
+      bestScore = score;
+      bestTask = t;
     }
   });
 
   document.getElementById("suggestion").innerText =
-    "Do this now: " + best.title;
+    "Do this now: " + bestTask.title;
 }
