@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unstuck</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Unstuck</h1>
+
+    <h2>Add Task</h2>
+    <input id="taskTitle" placeholder="Task name">
+    <input id="taskDeadline" type="datetime-local">
+    <input id="taskDuration" type="number" placeholder="Duration (min)">
+    
+    <select id="taskPriority">
+      <option value="1">Low priority</option>
+      <option value="2">Medium priority</option>
+      <option value="3">High priority</option>
+    </select>
+
+    <select id="taskFriction">
+      <option value="1">Easy</option>
+      <option value="2">Medium</option>
+      <option value="3">Hard</option>
+    </select>
+
+    <button onclick="addTask()">Add Task</button>
+
+    <h2>Tasks</h2>
+    <ul id="taskList"></ul>
+
+    <button onclick="suggestTask()">What should I do now?</button>
+
+    <div id="suggestion"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
